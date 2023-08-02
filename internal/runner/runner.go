@@ -8,7 +8,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ii/xds-test-harness/internal/parser"
+	"github.com/greymatter.io/xds-test-harness/internal/parser"
 
 	core "github.com/envoyproxy/go-control-plane/envoy/config/core/v3"
 	endpoint "github.com/envoyproxy/go-control-plane/envoy/config/endpoint/v3"

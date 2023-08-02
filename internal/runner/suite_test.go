@@ -2,7 +2,7 @@ package runner
 
 import (
 	"testing"
-	"github.com/ii/xds-test-harness/internal/types"
+	"github.com/greymatter.io/xds-test-harness/internal/types"
 )
 
 func TestSetTags (t *testing.T) {

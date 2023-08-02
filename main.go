@@ -8,9 +8,9 @@ import (
 	// "strings"
 
 	"github.com/cucumber/godog"
-	"github.com/ii/xds-test-harness/internal/parser"
-	"github.com/ii/xds-test-harness/internal/runner"
-	"github.com/ii/xds-test-harness/internal/types"
+	"github.com/greymatter.io/xds-test-harness/internal/parser"
+	"github.com/greymatter.io/xds-test-harness/internal/runner"
+	"github.com/greymatter.io/xds-test-harness/internal/types"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
