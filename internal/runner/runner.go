@@ -11,7 +11,9 @@ import (
 	"github.com/ii/xds-test-harness/internal/parser"
 
 	core "github.com/envoyproxy/go-control-plane/envoy/config/core/v3"
+	endpoint "github.com/envoyproxy/go-control-plane/envoy/config/endpoint/v3"
 	discovery "github.com/envoyproxy/go-control-plane/envoy/service/discovery/v3"
+	envoyresource "github.com/envoyproxy/go-control-plane/pkg/resource/v3"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/grpc"
 	any "google.golang.org/protobuf/types/known/anypb"
@@ -235,8 +237,23 @@ func (r *Runner) DeltaStream(service *XDSService) {
 			log.Debug().
 				Msgf("[Delta] Received discovery response: %v", in)
 			for _, resource := range in.GetResources() {
+				// NOTE(critter): these don't have names. They
+				// could be sent by xplane as a
+				// discovery.Resource instead of a
+				// types.Resource with an embedded name /
+				// version and this would be fixed here. Actual
+				// envoys don't receive discovery.Resources.
+				if resource.Name == "" {
+					if in.GetTypeUrl() == envoyresource.EndpointType {
+						cla := endpoint.ClusterLoadAssignment{}
+						err := resource.Resource.UnmarshalTo(&cla)
+						if err == nil {
+							resource.Name = cla.ClusterName
+						}
+					}
+				}
 				r.Validate.Resources[in.TypeUrl][resource.Name] = ValidateResource{
-					Version: in.SystemVersionInfo,
+					Version: resource.GetVersion(),
 					Nonce:   in.Nonce,
 				}
 				delete(r.Validate.RemovedResources[in.TypeUrl], resource.Name)
