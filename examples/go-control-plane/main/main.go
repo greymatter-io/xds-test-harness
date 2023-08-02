@@ -22,7 +22,7 @@ import (
 	"github.com/envoyproxy/go-control-plane/pkg/cache/v3"
 	"github.com/envoyproxy/go-control-plane/pkg/server/v3"
 	"github.com/envoyproxy/go-control-plane/pkg/test/v3"
-	example "github.com/greymatter.io/xds-test-harness/examples/go-control-plane"
+	example "github.com/greymatter-io/xds-test-harness/examples/go-control-plane"
 )
 
 var (

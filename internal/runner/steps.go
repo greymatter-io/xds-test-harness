@@ -12,8 +12,8 @@ import (
 	listener "github.com/envoyproxy/go-control-plane/envoy/config/listener/v3"
 	route "github.com/envoyproxy/go-control-plane/envoy/config/route/v3"
 	discovery "github.com/envoyproxy/go-control-plane/envoy/service/discovery/v3"
-	pb "github.com/greymatter.io/xds-test-harness/api/adapter"
-	parser "github.com/greymatter.io/xds-test-harness/internal/parser"
+	pb "github.com/greymatter-io/xds-test-harness/api/adapter"
+	parser "github.com/greymatter-io/xds-test-harness/internal/parser"
 	"github.com/rs/zerolog/log"
 	"google.golang.org/protobuf/types/known/anypb"
 )

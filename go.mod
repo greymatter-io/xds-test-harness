@@ -1,4 +1,4 @@
-module github.com/greymatter.io/xds-test-harness
+module github.com/greymatter-io/xds-test-harness
 
 go 1.20
 

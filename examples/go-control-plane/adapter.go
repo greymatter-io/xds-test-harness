@@ -22,7 +22,7 @@ import (
 	"github.com/envoyproxy/go-control-plane/pkg/wellknown"
 	pstruct "github.com/golang/protobuf/ptypes/struct"
 	"github.com/golang/protobuf/ptypes/wrappers"
-	pb "github.com/greymatter.io/xds-test-harness/api/adapter"
+	pb "github.com/greymatter-io/xds-test-harness/api/adapter"
 	"google.golang.org/grpc"
 	"google.golang.org/protobuf/types/known/anypb"
 	"google.golang.org/protobuf/types/known/durationpb"

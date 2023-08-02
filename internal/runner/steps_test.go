@@ -3,7 +3,7 @@ package runner
 import (
 	// listener "github.com/envoyproxy/go-control-plane/envoy/config/listener/v3"
 	// route "github.com/envoyproxy/go-control-plane/envoy/config/route/v3" discovery "github.com/envoyproxy/go-control-plane/envoy/service/discovery/v3"
-	// parser "github.com/greymatter.io/xds-test-harness/internal/parser"
+	// parser "github.com/greymatter-io/xds-test-harness/internal/parser"
 	// "google.golang.org/protobuf/proto"
 	// "google.golang.org/protobuf/types/known/anypb"
 	"testing"

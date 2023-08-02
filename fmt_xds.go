@@ -8,7 +8,7 @@ import (
 
 	"github.com/cucumber/godog"
 	"github.com/cucumber/godog/colors"
-	"github.com/greymatter.io/xds-test-harness/internal/types"
+	"github.com/greymatter-io/xds-test-harness/internal/types"
 	"github.com/rs/zerolog/log"
 )
 

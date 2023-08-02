@@ -9,8 +9,8 @@ import (
 	"strings"
 
 	"github.com/cucumber/godog"
-	pb "github.com/greymatter.io/xds-test-harness/api/adapter"
-	"github.com/greymatter.io/xds-test-harness/internal/types"
+	pb "github.com/greymatter-io/xds-test-harness/api/adapter"
+	"github.com/greymatter-io/xds-test-harness/internal/types"
 	"github.com/rs/zerolog/log"
 )
 

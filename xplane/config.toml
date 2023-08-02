@@ -1,0 +1,10 @@
+[nats]
+servers = ["nats://127.0.0.1"]
+insecure = true
+bucket = "config_tests"
+
+[xds]
+port = 18000
+
+[discovery]
+blank_enable = true
