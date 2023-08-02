@@ -9,7 +9,7 @@ import (
 	listener "github.com/envoyproxy/go-control-plane/envoy/config/listener/v3"
 	route "github.com/envoyproxy/go-control-plane/envoy/config/route/v3"
 	envoy_service_discovery_v3 "github.com/envoyproxy/go-control-plane/envoy/service/discovery/v3"
-	"github.com/greymatter-io/xds-test-harness/internal/types"
+	"github.com/greymatter-io/xds-test-harness/pkg/types"
 	"github.com/kylelemons/go-gypsy/yaml"
 	"github.com/rs/zerolog/log"
 )
