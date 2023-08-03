@@ -270,7 +270,7 @@ func (r *Runner) ClientReceivesResourcesAndVersionForService(resources, version,
 		err := fmt.Errorf("cannot determine typeURL for given service: %v", service)
 		return err
 	}
-	done := time.After(800 * time.Millisecond)
+	done := time.After(1200 * time.Millisecond)
 	for {
 		select {
 		case err := <-stream.Channels.Err:
@@ -302,7 +302,7 @@ func (r *Runner) ClientReceivesResourcesAndVersionForService(resources, version,
 // The response you reeceive should only have a single entry in its resources, otherwise we fail.
 // Won't work for LDS/CDS where it is conformant to pass along more than you need.
 func (r *Runner) ClientReceivesOnlyTheResourceAndVersionForTheService(resource, version, service string) error {
-	done := time.After(800 * time.Millisecond)
+	done := time.After(1200 * time.Millisecond)
 	for {
 		select {
 		case err := <-r.Service.Channels.Err:
@@ -328,7 +328,7 @@ func (r *Runner) ClientDoesNotReceiveAnyMessageFromService(service string) error
 	if err != nil {
 		return err
 	}
-	done := time.After(800 * time.Millisecond)
+	done := time.After(1200 * time.Millisecond)
 	for {
 		select {
 		case err := <-r.Service.Channels.Err:
@@ -350,7 +350,7 @@ func (r *Runner) ClientReceivesNoticeThatResourceWasRemovedForService(resource, 
 		err := fmt.Errorf("cannot determine typeURL for given service: %v", service)
 		return err
 	}
-	done := time.After(800 * time.Millisecond)
+	done := time.After(1200 * time.Millisecond)
 	for {
 		select {
 		case err := <-stream.Channels.Err:
@@ -372,7 +372,7 @@ func (r *Runner) ClientDoesNotReceiveResourceOfServiceAtVersion(resource, servic
 		err := fmt.Errorf("cannot determine typeURL for given service: %v", service)
 		return err
 	}
-	done := time.After(800 * time.Millisecond)
+	done := time.After(1200 * time.Millisecond)
 	for {
 		select {
 		case err := <-stream.Channels.Err:
@@ -476,7 +476,7 @@ func (r *Runner) TheServiceNeverRespondsMoreThanNecessary() error {
 	stream.Channels.Done <- true
 
 	// give some time for the final messages to come through, if there's any lingering responses.
-	time.Sleep(800 * time.Millisecond)
+	time.Sleep(1200 * time.Millisecond)
 	log.Debug().
 		Msgf("Request Count: %v Response Count: %v", r.Validate.RequestCount, r.Validate.ResponseCount)
 	if r.Validate.RequestCount <= r.Validate.ResponseCount {

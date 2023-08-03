@@ -7,11 +7,25 @@ import (
 	"encoding/json"
 	"fmt"
 	"strings"
+	"testing"
 
 	"github.com/cucumber/godog"
 	pb "github.com/greymatter-io/xds-test-harness/api/adapter"
 	"github.com/greymatter-io/xds-test-harness/pkg/types"
 	"github.com/rs/zerolog/log"
+
+	_ "embed"
+)
+
+var (
+	//go:embed features/delta.feature
+	deltaFeature []byte
+
+	//go:embed features/subscribing.feature
+	subscribingFeature []byte
+
+	//go:embed features/unsubcribing.feature
+	unsubscribingFeature []byte
 )
 
 type Suite struct {
@@ -105,6 +119,23 @@ func (s *Suite) ConfigureSuite() {
 		Format:              "pretty",
 		Concurrency:         0,
 	}
+
+	// use our embedded features
+	godogOpts.FeatureContents = []godog.Feature{
+		{
+			Name:     "Delta",
+			Contents: deltaFeature,
+		},
+		{
+			Name:     "Subscribing",
+			Contents: deltaFeature,
+		},
+		{
+			Name:     "Unsubscribing",
+			Contents: deltaFeature,
+		},
+	}
+
 	if !s.TestWriting { // default is pretty output to stdout.
 		// Only use default when writing tests, otherwise print to our special buffer.
 		outputFile := variantToOutputFile(s.Variant)
@@ -121,7 +152,8 @@ func (s *Suite) ConfigureSuite() {
 	s.TestSuite = suite
 }
 
-func (s *Suite) Run() (results types.VariantResults, err error) {
+func (s *Suite) Run(t *testing.T) (results types.VariantResults, err error) {
+	s.TestSuite.Options.TestingT = t
 	s.TestSuite.Run()
 	if s.TestWriting {
 		return results, err

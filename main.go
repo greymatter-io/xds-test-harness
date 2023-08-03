@@ -1,10 +1,12 @@
-package main
+package harness
 
 import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
 	"os"
+	"testing"
+
 	// "strings"
 
 	"github.com/cucumber/godog"
@@ -14,6 +16,8 @@ import (
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
 	"github.com/spf13/pflag"
+
+	_ "embed"
 )
 
 var (
@@ -34,7 +38,7 @@ func init() {
 	zerolog.SetGlobalLevel(zerolog.InfoLevel)
 }
 
-func main() {
+func Run(t *testing.T) {
 	pflag.Parse()
 	godogTags := godogOpts.Tags
 
@@ -70,7 +74,7 @@ func main() {
 		}
 		suite.ConfigureSuite()
 
-		variantResults, err := suite.Run()
+		variantResults, err := suite.Run(t)
 		if err != nil {
 			log.Fatal().
 				Msgf("Error when attempting to run test suite: %v\n", err)
@@ -82,7 +86,6 @@ func main() {
 		file, _ := json.MarshalIndent(results, "", "  ")
 		_ = ioutil.WriteFile("results.json", file, 0644)
 	}
-	os.Exit(0)
 }
 
 func printResults(results types.Results) {
